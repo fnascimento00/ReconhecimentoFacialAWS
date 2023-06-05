@@ -25,9 +25,12 @@ $ <span class="pl-c1">cd</span> ReconhecimentoFacialAWS <br/>
 
 <span class="pl-c"><span class="pl-c">#</span> Edite o arquivo appsettings.json e appsettings.Development.json</span>
 Para utilizar o serviço Amazon Rekognition é necessário criar uma conta na AWS e habilitar o serviço. <br/>Uma vez que o serviço estiver devidamente configurado adicione as seguintes informações nos arquivos<br/>appsettings.json e appsettings.Development.json. <br/>
-$ <span class="pl-c1">#</span> AccessKey
-$ <span class="pl-c1">#</span> SecretKey
-$ <span class="pl-c1">#</span> Region
+
+"AWSSettings": {
+    "AccessKey": "",
+    "SecretKey": "",
+    "Region": ""
+  }
 
 <span class="pl-c"><span class="pl-c">#</span> Compile a aplicação</span>
 $ dotnet build <br/>
@@ -36,7 +39,7 @@ $ dotnet run <br/>
 <span class="pl-c"><span class="pl-c">#</span> Abra o browser e navegue para https://localhost:7066</span>
 </div>
     <h2>:pencil: Licença</h2>
-    <p>Este projeto está sob a licença do MIT. Veja o em <a href="https://github.com/fnascimento00/ReconhecimentoFacialAWS/blob/main/LICENSE" rel="nofollow">LICENSE</a> para maiores informações.</p>
+    <p>Este projeto está sob a licença do MIT. Veja o em <a href="https://github.com/fnascimento00/ReconhecimentoFacialAWS/blob/master/LICENSE.txt" rel="nofollow">LICENSE</a> para maiores informações.</p>
     <hr>
     <p>Saiba mais sobre mim: <a href="https://www.linkedin.com/in/flávio-nascimento-8089a232/" rel="nofollow">linkedin</a></p>
   </article>
