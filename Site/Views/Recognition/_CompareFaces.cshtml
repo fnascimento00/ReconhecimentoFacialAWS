@@ -1,0 +1,54 @@
+﻿@using ReconhecimentoFacialAWS.ViewModels;
+@model CompareFacesVM
+
+<div id="offcanvasCompareFaces" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Resultado</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="row mb-3">
+            <div class="col-6 text-center">
+                <p><strong>Foto 1</strong></p>
+                <img src="@Model.Photo1" class="img-thumbnail" alt="Foto 1">
+            </div>
+            <div class="col-6 text-center">
+                <p><strong>Foto 2</strong></p>
+                <img src="@Model.Photo2" class="img-thumbnail" alt="Foto 2">
+            </div>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.NoMatches))
+        {
+            <div class="alert alert-danger" role="alert">
+                @Model.NoMatches
+            </div>
+        }
+        else
+        {
+            <dl class="row">
+                <dt class="col-sm-4">Similaridade</dt>
+                <dd class="col-sm-8">@Model.Similarity %</dd>
+                <dt class="col-sm-4">Gênero</dt>
+                <dd class="col-sm-8">@Model.Gender.Value</dd>
+                <dt class="col-sm-4">Faixa Etária</dt>
+                <dd class="col-sm-8">Entre @Model.AgeRange.Low e @Model.AgeRange.High anos.</dd>
+                <dt class="col-sm-4">Brilho</dt>
+                <dd class="col-sm-8">@Model.Quality.Brightness</dd>
+                <dt class="col-sm-4">Nitidez</dt>
+                <dd class="col-sm-8">@Model.Quality.Sharpness</dd>
+            </dl>
+            if (Model.Spoofing)
+            {
+                <div class="alert alert-warning" role="alert">
+                    @Model.Message
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-primary" role="alert">
+                    @Model.Message
+                </div>
+            }
+        }
+    </div>
+</div>

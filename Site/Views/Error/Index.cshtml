@@ -1,0 +1,23 @@
+﻿@using ReconhecimentoFacialAWS.ViewModels;
+@model ErrorVM
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <div class="alert alert-danger" role="alert">
+        <dl class="row">
+            <dt class="col-2">Código:</dt>
+            <dd class="col-10">@((int)Model.StatusCode) - @Model.StatusCode</dd>
+            @if (!string.IsNullOrWhiteSpace(Model.Acao))
+            {
+                <dt class="col-2">Ação:</dt>
+                <dd class="col-10">@Model.Acao</dd>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Origem))
+            {
+                <dt class="col-2">Origem:</dt>
+                <dd class="col-10">@Model.Origem</dd>
+            }
+            <dt class="col-2">Descrição:</dt>
+            <dd class="col-10">@Model.Mensagem</dd>
+        </dl>
+    </div>
+</div>

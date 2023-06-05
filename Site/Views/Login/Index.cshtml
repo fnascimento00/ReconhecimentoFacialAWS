@@ -1,0 +1,123 @@
+﻿@using ReconhecimentoFacialAWS.ViewModels
+@model LoginVM
+
+<form id="frmLogin" class="needs-validation" method="post" novalidate>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <div class="mt-5 w-25">
+            <div class="shadow p-3 mb-5 bg-light rounded">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label class="form-label" asp-for="@Model.Login"></label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <input type="text" class="form-control lower" asp-for="@Model.Login" placeholder="digite o login" required autofocus>
+                            <span asp-validation-for="@Model.Login" class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <label class="form-label" asp-for="@Model.Password"></label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="bi bi-lock"></i>
+                            </div>
+                            <input type="password" class="form-control" asp-for="@Model.Password" placeholder="digite a senha" autocomplete="off" required>
+                            <span asp-validation-for="@Model.Password" class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button 
+                        id="btnNovoUsuario" 
+                        class="btn btn-success" 
+                        type="button" 
+                        data-loading-text="Aguarde..." 
+                        data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasUsuario"
+                            aria-controls="offcanvasRight">Novo Usuário
+                    </button>
+                    <button 
+                        id="btnConectar" 
+                        class="btn btn-primary" 
+                        type="submit" 
+                        data-loading-text="Aguarde...">Conectar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<partial name="_Cadastro" />
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#offcanvasUsuario').on('shown.bs.offcanvas', function () {
+                $("#txtLogin").focus();
+            });
+
+            $(document).on('click', '#btnConectar', function () {
+                if ($('#frmLogin').valid()) {
+                    $('#btnConectar').prop('disabled', true);
+                    $.ajax({
+                        headers: {
+                            "X-CSRF-TOKEN-HEADERNAME": $('#frmLogin').find('input[name="AntiforgeryFieldname"]').val()
+                        },
+                        url: '@Url.Action("Connect", "Login")',
+                        cache: false,
+                        type: 'post',
+                        datatype: 'json',
+                        data: $('#frmLogin').serialize(),
+                        success: function (result) {
+                            if (result.valid) {
+                                window.location.href = _caminhoSite + 'Recognition'
+                            }
+                            else {
+                                ShowAlert(result.message);
+                                $('#btnConectar').prop('disabled', false);
+                            }
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#btnGravar', function () {
+                if ($('#frmUsuario').valid()) {
+                    $('#btnGravar').prop('disabled', true);
+
+                    var _form = $('#frmUsuario')[0];
+                    var _data = new FormData(_form);
+
+                    $.ajax({
+                        headers: {
+                            "X-CSRF-TOKEN-HEADERNAME": $('#frmLogin').find('input[name="AntiforgeryFieldname"]').val()
+                        },
+                        url: '@Url.Action("NewUser", "Login")',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        type: 'post',
+                        datatype: 'json',
+                        data: _data,
+                        success: function (result) {
+                            ShowAlert(result.message);
+
+                            if (result.valid) {
+                                $('#offcanvasUsuario').offcanvas('hide');
+                            }
+                            else {
+                                $('#btnGravar').prop('disabled', false);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
