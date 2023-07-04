@@ -20,8 +20,16 @@ public static class Mapper
         return new AddUserCOM
         {
             Login = viewModel.Login.ToLower(),
-            Password = viewModel.Password.ToLower(),
-            Photo = viewModel.Photo
+            Password = viewModel.Password.ToLower()
+        };
+    }
+
+    public static AddPhotoUserCOM MapToCommand(string login, string photo)
+    {
+        return new AddPhotoUserCOM
+        {
+            Login = login,
+            Photo = photo
         };
     }
 

@@ -13,8 +13,4 @@ public class UserVM
     [Required(ErrorMessage = "Informe a Senha!")]
     [Display(Name = "Senha")]
     public string Password { get; set; }
-
-    [DisplayName("Foto")]
-    [Required(ErrorMessage = "Informe a Foto!")]
-    public IFormFile Photo { get; set; }
 }

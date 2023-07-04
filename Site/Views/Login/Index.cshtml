@@ -76,7 +76,7 @@
                         data: $('#frmLogin').serialize(),
                         success: function (result) {
                             if (result.valid) {
-                                window.location.href = _caminhoSite + 'Recognition'
+                                window.location.href = _caminhoSite + result.redirectTo;
                             }
                             else {
                                 ShowAlert(result.message);
@@ -90,21 +90,15 @@
             $(document).on('click', '#btnGravar', function () {
                 if ($('#frmUsuario').valid()) {
                     $('#btnGravar').prop('disabled', true);
-
-                    var _form = $('#frmUsuario')[0];
-                    var _data = new FormData(_form);
-
                     $.ajax({
                         headers: {
                             "X-CSRF-TOKEN-HEADERNAME": $('#frmLogin').find('input[name="AntiforgeryFieldname"]').val()
                         },
                         url: '@Url.Action("NewUser", "Login")',
                         cache: false,
-                        contentType: false,
-                        processData: false,
                         type: 'post',
                         datatype: 'json',
-                        data: _data,
+                        data: $('#frmUsuario').serialize(),
                         success: function (result) {
                             ShowAlert(result.message);
 

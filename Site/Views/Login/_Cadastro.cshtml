@@ -7,7 +7,7 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form id="frmUsuario" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+        <form id="frmUsuario" class="needs-validation" method="post" novalidate>
             <div class="row mb-3">
                 <div class="col-12">
                     <label class="form-label" asp-for="@Model.Login"></label>
@@ -20,13 +20,6 @@
                     <label class="form-label" asp-for="@Model.Password"></label>
                     <input id="txtPassword" type="password" class="form-control" asp-for="@Model.Password" placeholder="digite a senha" autocomplete="off" required>
                     <span asp-validation-for="@Model.Password" class="invalid-feedback"></span>
-                </div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-12">
-                    <label class="form-label" asp-for="@Model.Photo"></label>
-                    <input class="form-control" type="file" id="formFile" asp-for="@Model.Photo" accept=".jpg,.jpeg,.png" required>
-                    <span asp-validation-for="@Model.Photo" class="invalid-feedback"></span>
                 </div>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

@@ -8,15 +8,17 @@
       <img alt="Github license" src="https://img.shields.io/github/license/fnascimento00/ReconhecimentoFacialAWS">
     </p>
     <h2>:speech_balloon: Projeto</h2>
-    <p><strong>ReconhecimentoFacialAWS</strong> é um aplicativo que testa o serviço <a href="https://aws.amazon.com/pt/rekognition/" rel="nofollow">Amazon Rekognition</a>. O aplicativo realiza a autenticação de dois fatores (2FA), sendo a primeira autenticação por meio de um formulário com login e senha e a segunda autenticação por reconhecimento facial. Para o reconhecimento facial são utilizados os métodos: CompareFacesAsync e DetectFacesAsync do AmazonRekognitionClient.</p>
+    <p><strong>ReconhecimentoFacialAWS</strong> é um aplicativo web que testa o serviço <a href="https://aws.amazon.com/pt/rekognition" rel="nofollow">Amazon Rekognition</a> trabalhando em conjunto com o
+    <a href="https://github.com/justadudewhohacks/face-api.js" rel="nofollow">face-api.js</a> que é uma API Javascript de reconhecimento de rosto implementada sobre o núcleo do <a href="https://github.com/tensorflow/tfjs" rel="nofollow">tensorflow.js</a>. O aplicativo realiza a autenticação de dois fatores (2FA), sendo a primeira autenticação por meio de um formulário com login e senha e a segunda autenticação por reconhecimento facial. Para o reconhecimento facial são utilizados os métodos: CompareFacesAsync e DetectFacesAsync do AmazonRekognitionClient.</p>
     <h2>:rocket: Tecnologias</h2>
     <p>Este projeto foi desenvolvido com as seguintes tecnologias:</p>
     <ul>
-      <li><a href="https://learn.microsoft.com/pt-br/aspnet/core/mvc/overview?view=aspnetcore-7.0" rel="nofollow">Asp.Net Core MVC</a></li>
-      <li><a href="https://aws.amazon.com/pt/rekognition/" rel="nofollow">Amazon Rekognition</a></li>
+      <li><a href="https://learn.microsoft.com/pt-br/aspnet/core/mvc/overview?view=aspnetcore-7.0" rel="nofollow">Asp.Net Core Web App (MVC)</a></li>
+      <li><a href="https://aws.amazon.com/pt/rekognition" rel="nofollow">Amazon Rekognition</a></li>
+      <li><a href="https://github.com/justadudewhohacks/face-api.js" rel="nofollow">face-api.js</a></li>
     </ul>
     <h2>:information_source:</a> Como usar </h2>
-    <p>Para clonar e executar este aplicativo, você precisará do <a href="https://dotnet.microsoft.com/pt-br/download/dotnet/7.0" rel="nofollow">.NET 7.0</a>. No terminal execute os seguintes comandos:</p>
+    <p>Para clonar e executar este aplicativo, você precisará do <a href="https://dotnet.microsoft.com/pt-br/download/dotnet/7.0" rel="nofollow">.NET 7.0</a> instalado na sua máquina. No terminal execute os seguintes comandos:</p>
     <div class="highlight highlight-source-shell">
       <pre><span class="pl-c"><span class="pl-c">#</span> Clonar o repositório</span>
 $ git clone https://github.com/fnascimento00/ReconhecimentoFacialAWS <br/>
