@@ -6,12 +6,84 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Rekognition" Version="3.7.107.8" />
+    <Compile Remove="wwwroot\models\faceLandmark68Net\**" />
+    <Compile Remove="wwwroot\models\faceRecognitionNet\**" />
+    <Compile Remove="wwwroot\models\tinyFaceDetector\**" />
+    <Content Remove="wwwroot\models\faceLandmark68Net\**" />
+    <Content Remove="wwwroot\models\faceRecognitionNet\**" />
+    <Content Remove="wwwroot\models\tinyFaceDetector\**" />
+    <EmbeddedResource Remove="wwwroot\models\faceLandmark68Net\**" />
+    <EmbeddedResource Remove="wwwroot\models\faceRecognitionNet\**" />
+    <EmbeddedResource Remove="wwwroot\models\tinyFaceDetector\**" />
+    <None Remove="wwwroot\models\faceLandmark68Net\**" />
+    <None Remove="wwwroot\models\faceRecognitionNet\**" />
+    <None Remove="wwwroot\models\tinyFaceDetector\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.7.108.1" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Update="users.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\face-api\dist\face-api.js">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\age_gender_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\age_gender_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_expression_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_expression_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_landmark_68_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_landmark_68_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_landmark_68_tiny_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_landmark_68_tiny_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_recognition_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_recognition_model-shard2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\face_recognition_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\mtcnn_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\mtcnn_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\ssd_mobilenetv1_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\ssd_mobilenetv1_model-shard2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\ssd_mobilenetv1_model-weights_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\tiny_face_detector_model-shard1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\models\tiny_face_detector_model-weights_manifest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
