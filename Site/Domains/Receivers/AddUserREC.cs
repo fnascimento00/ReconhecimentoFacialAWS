@@ -1,5 +1,6 @@
 ﻿using ReconhecimentoFacialAWS.Domains.Commands;
 using ReconhecimentoFacialAWS.Repositories;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -14,6 +15,8 @@ public interface IAddUserREC
 public class AddUserREC : IAddUserREC
 {
     private readonly IUserRepository _userRepository;
+
+    public JavaScriptEncoder UnsafeRelaxedJsonEscaping { get; private set; }
 
     public AddUserREC(IUserRepository userRepository)
     {
@@ -64,7 +67,8 @@ public class AddUserREC : IAddUserREC
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             WriteIndented = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Encoder = UnsafeRelaxedJsonEscaping
         };
 
         var _usersTable = new UsersTable()

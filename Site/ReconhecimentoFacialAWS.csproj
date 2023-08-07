@@ -21,7 +21,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Rekognition" Version="3.7.108.1" />
+    <Content Remove="wwwroot\js\facedetection.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\facedetection.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\facedetection.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.7.200.10" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
   </ItemGroup>
 
@@ -86,6 +99,11 @@
     <Content Update="wwwroot\models\tiny_face_detector_model-weights_manifest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\min\" />
+    <Folder Include="wwwroot\js\min\" />
   </ItemGroup>
 
 </Project>

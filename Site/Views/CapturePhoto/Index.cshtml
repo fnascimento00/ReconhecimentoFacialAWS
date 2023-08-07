@@ -5,7 +5,7 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="face-container">
-                            <div class="oval"></div>
+                            <div class="rectangular"></div>
                             <video id="videoElement" autoplay class="w-100"></video>
                             <canvas id="overlayCanvas" class="custom-canvas w-100"></canvas>
                         </div>
@@ -45,14 +45,14 @@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
     <script src="~/lib/face-api/dist/face-api.min.js"></script>
+    <script src="~/js/min/facedetection.min.js"></script>
 
     <script type="module">
         $(document).ready(async function () {
             const detectionOptions = new faceapi.TinyFaceDetectorOptions();
             const video = document.getElementById('videoElement');
             const overlayCanvas = document.getElementById('overlayCanvas');
-            let captureActive = true;
-            const scale = 1.5;
+            const progressBar = document.getElementById("pbar");
 
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
@@ -71,47 +71,13 @@
 
             async function startFaceDetection() {
                 const intervalId = setInterval(async () => {
-                    faceapi.matchDimensions(overlayCanvas, video, true);
+                    const detection = await faceDetection(overlayCanvas, video, progressBar);
 
-                    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-                        .withFaceLandmarks();
-
-                    const context = overlayCanvas.getContext('2d');
-                    context.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
-
-                    if (detections.length > 0) {
-                        const faceRect = detections[0].detection.box;
-
-                        //RectangleOverFace(context, faceRect, scale);
-                        //ExpressionLines(context, detections);
-
-                        if (checkFaceApproach(faceRect)) {
-                            clearInterval(intervalId);
-                            captureImage();
-                        }
+                    if (detection) {
+                        clearInterval(intervalId);
+                        captureImage();
                     }
                 }, 100);
-            }
-
-            function checkFaceApproach(faceRect) {
-                if (!captureActive) return false;
-
-                const referenceSize = 290;
-                const faceSize = Math.max(faceRect.width, faceRect.height);
-                let percent = Math.round((faceSize * 100) / referenceSize);
-                percent = percent > 100 ? 100 : percent;
-                drawProgressBar(percent);
-
-                if (faceSize > referenceSize) return true;
-
-                return false;
-            }
-
-            function drawProgressBar(percent) {
-                const progressBar = document.getElementById("pbar");
-                progressBar.style = `width: ${percent}%`;
-                progressBar.setAttribute("aria-valuenow", percent);
-                progressBar.innerHTML = percent + "%";
             }
 
             function captureImage() {
@@ -126,25 +92,9 @@
                     faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
                     faceapi.nets.faceRecognitionNet.loadFromUri('/models')
                 ]).then(async () => {
-                    const detections = await faceapi.detectSingleFace(video, detectionOptions).withFaceLandmarks().withFaceDescriptor();
+                    const dataUrl = await getImage(video, detectionOptions);
 
-                    if (detections) {
-                        const faceRect = detections.detection.box;
-
-                        const enlargedWidth = faceRect.width * scale;
-                        const enlargedHeight = faceRect.height * scale;
-                        const enlargedX = faceRect.x - (enlargedWidth - faceRect.width) / 2;
-                        const enlargedY = (faceRect.y - (enlargedHeight - faceRect.height) / 2) - 40;
-
-                        const canvas = document.createElement('canvas');
-                        canvas.width = enlargedWidth;
-                        canvas.height = enlargedHeight;
-
-                        const context = canvas.getContext('2d');
-                        context.drawImage(video, enlargedX, enlargedY, enlargedWidth, enlargedHeight, 0, 0, canvas.width, canvas.height);
-
-                        const dataUrl = canvas.toDataURL('image/png');
-
+                    if (dataUrl != null) {
                         $.ajax({
                             url: '@Url.Action("Capture", "CapturePhoto")',
                             cache: false,
@@ -185,7 +135,7 @@
                 e.stopPropagation();
                 $('#divCapture').addClass('visually-hidden');
                 $('#divMessage').removeClass('visually-hidden');
-                drawProgressBar(0);
+                drawProgressBar(progressBar, 0);
                 captureActive = true;
             });
 
