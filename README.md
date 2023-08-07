@@ -23,7 +23,7 @@
       <pre><span class="pl-c"><span class="pl-c">#</span> Clonar o repositório</span>
 $ git clone https://github.com/fnascimento00/ReconhecimentoFacialAWS <br/>
 <span class="pl-c"><span class="pl-c">#</span> Vá para o repositório</span>
-$ <span class="pl-c1">cd</span> ReconhecimentoFacialAWS <br/>
+$ <span class="pl-c1">cd</span> ReconhecimentoFacialAWS\Site <br/>
 
 <span class="pl-c"><span class="pl-c">#</span> Edite o arquivo appsettings.json e appsettings.Development.json</span>
 Para utilizar o serviço Amazon Rekognition é necessário criar uma conta na AWS e habilitar o serviço. <br/>Uma vez que o serviço estiver devidamente configurado adicione as seguintes informações nos arquivos<br/>appsettings.json e appsettings.Development.json. <br/>
