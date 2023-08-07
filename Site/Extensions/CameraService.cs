@@ -99,12 +99,12 @@ public class CameraService : ICameraService
 
                 if (_compareFaces.Quality.Brightness < 70)
                 {
-                    _compareFaces.Message += " Brilho da Foto 1 abaixo valor mínimo esperado de 70%.";
+                    _compareFaces.Message += " Brilho da Foto Capturada abaixo valor mínimo esperado de 70%.";
                 }
 
                 if (_compareFaces.Quality.Sharpness < 70)
                 {
-                    _compareFaces.Message += " Nitidez da Foto 1 abaixo valor mínimo esperado de 70%.";
+                    _compareFaces.Message += " Nitidez da Foto Capturada abaixo valor mínimo esperado de 70%.";
                 }
 
                 if (_compareFaces.Quality.Brightness < 70 || _compareFaces.Quality.Sharpness < 70)

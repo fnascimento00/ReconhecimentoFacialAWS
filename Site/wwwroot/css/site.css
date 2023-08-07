@@ -47,19 +47,21 @@ body {
 .face-container {
     position: relative;
     width: 620px;
-    height: 460px;
+    height: 380px;
     overflow: hidden;
 }
 
-.oval {
+.rectangular {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 50%;
-    width: 50%;
-    height: 80%;
+    border-radius: 10%;
+    width: 55%;
+    height: 90%;
     box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.6); /* Fundo escuro para destacar o rosto */
+    border: 2px solid white; /* Cor e espessura da borda */
+    overflow: hidden; /* Impede que as bordas extras sejam visíveis fora do retângulo */
 }
 
 videoElement, canvas {
